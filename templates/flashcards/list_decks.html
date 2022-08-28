@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title%}Deck List{% endblock %}
+<h1>Decks</h1>
+<div class="container">
+<a class="create-deck"> Create a new deck</a>
+{% for deck in decks %}
+    <div class="deck-box">
+    <a class="deck-title" >{{ deck }}</a>
+    </div>
+{% endfor %}
+</div>
+{%block content %}
