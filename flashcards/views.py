@@ -1,24 +1,39 @@
-from django.shortcuts import render, get_list_or_404
-from . models import Card
-from flashcards.forms import CardForm
+from django.shortcuts import render, get_object_or_404
+from . models import Card, Deck
+from flashcards.forms import CardForm, DeckForm
 from django.shortcuts import redirect
 
-# Create your views here.
+# show list of deck names
 def list_decks(request):
-    decks = Card.objects.all()
+    decks = Deck.objects.all()
     return render(request, 'flashcards/list_decks.html', {'decks': decks})
 
-# I think I need to create an empty list called deck so all the added cards can be added to it. But what does that mean for the Card model?
-def create_deck(request):
+# create a new deck
+def new_deck(request):
     if request.method == 'POST':
-        form = CardForm(request.POST)
-        if form.is_valid():
-            card = form.save()
-            return redirect('list_decks')
-    form = CardForm()
-    return render(request, 'deck/create_deck.html', {'form': form})
+        deck_form = DeckForm(request.POST)
+        if deck_form.is_valid():
+            deck = deck_form.save()
+            return redirect('deck_detail', pk=deck.pk)
+    deck_form = DeckForm()
+    return render(request, 'flashcards/new_deck.html', {'deck_form': deck_form})
 
-# this is where i think that list will be useful since each deck is a list of cards
+# should show all the cards in the selected deck
 def deck_detail(request, pk):
-    deck = get_list_or_404(Card, pk=pk)
-    return render(request, 'decks/deck_detail.html', {'deck': deck})
+    deck = get_object_or_404(Deck, pk=pk)
+    cards = deck.cards.all()
+    return render(request, 'flashcards/deck_detail.html', {'deck': deck, 'cards': deck.cards.all()})
+
+# add a new card to the selected deck
+def add_card(request, pk=None):
+    deck = get_object_or_404(Deck, pk=pk)
+    if request.method == 'POST':
+        card_form = CardForm(request.POST)
+        if card_form.is_valid():
+            card = card_form.save(commit=False)
+            card.deck = deck
+            card.save()
+            return redirect('deck_detail', pk=pk)
+    else:
+        card_form = CardForm()
+    return render(request, 'flashcards/add_card.html', {'card_form': card_form})

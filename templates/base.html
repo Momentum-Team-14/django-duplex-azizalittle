@@ -10,6 +10,9 @@
     <title>{% block title %}BOLT! Flashcards{% endblock %}</title>
 </head>
 <body>
+    <a class="home-button" href="{% url 'list_decks' %}"> 
+        <h1>BOLT! Flashcards</h1>
+    </a> 
     {% block content %}
     {% endblock %}
 </body>

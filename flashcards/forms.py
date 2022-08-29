@@ -1,9 +1,14 @@
 from django import forms
-from .models import Card
+from .models import Card, Deck
 
 class CardForm(forms.ModelForm):
-
     class Meta:
         model = Card
-        fields = ('deck', 'prompt', 'answer')
+        fields = ('prompt', 'answer')
+
+
+class DeckForm(forms.ModelForm):
+    class Meta:
+        model = Deck
+        fields = ('title',)
 

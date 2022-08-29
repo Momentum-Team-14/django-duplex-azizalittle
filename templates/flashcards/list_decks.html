@@ -4,8 +4,8 @@
 {% block content %}
 <h1>Decks</h1>
 <div class="container">
-<a class="create-deck" href="{% url 'create_deck' %}"> Create a new fashcard</a>
-{% for deck in deck %}
+<a class="new-deck" href="{% url 'new_deck' %}"> Create a new deck</a>
+{% for deck in decks %}
     <div class="deck-box">
     <a class="deck-title" href="{% url 'deck_detail' pk=deck.pk %}">{{ deck }}</a>
     </div>
