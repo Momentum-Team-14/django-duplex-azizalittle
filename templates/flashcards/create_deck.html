@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+<!-- should i make two separate buttons for "save and add another" and "save and exit deck" ? -->
+{% block content %}
+<form action="" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Add card to deck</button>
+</form>
+{% endblock %}

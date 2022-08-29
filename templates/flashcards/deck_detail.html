@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="">{{ card }}</h1>
+    <!-- trying to make a for loop that displays each card in the given deck -->
+    {% for card in cards %}
+        <div class="card-box">
+        <h2 class="deck-details">{{ card.prompt }}: {{ card.answer }}</h2>
+        </div>
+{% endblock %}

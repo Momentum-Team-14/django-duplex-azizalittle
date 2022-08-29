@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title%}Deck List{% endblock %}
+{% block content %}
 <h1>Decks</h1>
 <div class="container">
-<a class="create-deck"> Create a new deck</a>
-{% for deck in decks %}
+<a class="create-deck" href="{% url 'create_deck' %}"> Create a new fashcard</a>
+{% for deck in deck %}
     <div class="deck-box">
-    <a class="deck-title" >{{ deck }}</a>
+    <a class="deck-title" href="{% url 'deck_detail' pk=deck.pk %}">{{ deck }}</a>
     </div>
 {% endfor %}
 </div>
-{%block content %}
+
+{% endblock content %}

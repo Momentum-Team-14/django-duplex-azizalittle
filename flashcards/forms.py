@@ -1,8 +1,9 @@
-from importlib.resources import path
-from django.contrib import admin
-from django.urls import path
-from . import views
+from django import forms
+from .models import Card
 
-urlpatterns = [
-    path('', views.list_decks, name='list_decks'),
-]
+class CardForm(forms.ModelForm):
+
+    class Meta:
+        model = Card
+        fields = ('deck', 'prompt', 'answer')
+
