@@ -1,9 +1,9 @@
-from django.contrib.auth.models import User as BaseUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 # Create your models here.
-class User(BaseUser):
+class User(AbstractUser):
     # could add custom user attributes here
     pass
 

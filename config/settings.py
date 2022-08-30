@@ -126,3 +126,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SIMPLE_BACKEND_REDIRECT_URL = '/'
+AUTH_USER_MODEL = 'flashcards.User'
+LOGIN_REDIRECT_URL = '/'

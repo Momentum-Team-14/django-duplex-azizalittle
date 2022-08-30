@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
     <title>{% block title %}BOLT! Flashcards{% endblock %}</title>
 </head>
+<header>
+<a class="home-button" href="{% url 'list_decks' %}"> 
+    <h1>BOLT! Flashcards</h1>
+</a> 
+<div><a href="/accounts/login">Login</a></div>
+</header>
 <body>
-    <a class="home-button" href="{% url 'list_decks' %}"> 
-        <h1>BOLT! Flashcards</h1>
-    </a> 
     {% block content %}
     {% endblock %}
 </body>
