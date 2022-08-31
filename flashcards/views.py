@@ -24,6 +24,27 @@ def deck_detail(request, pk):
     cards = deck.cards.all()
     return render(request, 'flashcards/deck_detail.html', {'deck': deck, 'cards': deck.cards.all()})
 
+# edit deck (name)
+def edit_deck(request, pk):
+    deck = get_object_or_404(Deck, pk=pk)
+    if request.method == 'POST':
+        deck_form = DeckForm(request.POST, instance=deck)
+        if deck_form.is_valid():
+            deck = deck_form.save()
+            return redirect('deck_detail', pk=deck.pk)
+    else:
+        deck_form = DeckForm(instance=deck)
+    return render(request, 'flashcards/edit_deck.html', {'deck_form': deck_form})
+
+# delete deck
+def delete_deck(request, pk):
+    deck = get_object_or_404(Deck, pk=pk)
+    if request.method == 'POST':
+        deck.delete()
+        return redirect('list_decks')
+    return render(request, 'flashcards/delete_deck.html', {'deck':deck})
+
+
 # add a new card to the selected deck
 def add_card(request, pk=None):
     deck = get_object_or_404(Deck, pk=pk)
@@ -37,3 +58,4 @@ def add_card(request, pk=None):
     else:
         card_form = CardForm()
     return render(request, 'flashcards/add_card.html', {'card_form': card_form})
+

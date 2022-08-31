@@ -9,4 +9,7 @@
         </div>
     {% endfor %}
     <a class="add-card" href="{% url 'add_card' pk=deck.pk %}">Add new card</a>
+    <a class="deck-list" href="{% url 'list_decks' %}">Back to deck list</a>
+    <a class="edit-deck" href="{% url 'edit_deck' pk=deck.pk %}">Edit deck</a>
+    <a class="delete-deck" href="{% url 'delete_deck' pk=deck.pk %}">Delete deck</a>
 {% endblock %}

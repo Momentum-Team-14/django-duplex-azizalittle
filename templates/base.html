@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+    <!-- link javascript file here -->
     <title>{% block title %}BOLT! Flashcards{% endblock %}</title>
 </head>
 <header>
 <a class="home-button" href="{% url 'list_decks' %}"> 
     <h1>BOLT! Flashcards</h1>
-</a> 
-<div><a href="/accounts/login">Login</a></div>
+</a> <div><a href="/accounts/login">Login</a></div>
 </header>
 <body>
     {% block content %}
