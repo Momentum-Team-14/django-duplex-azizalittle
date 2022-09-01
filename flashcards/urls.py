@@ -10,5 +10,7 @@ urlpatterns = [
     path('decks/<int:pk>/edit/', views.edit_deck, name='edit_deck'),
     path('decks/<int:pk>/delete/', views.delete_deck, name='delete_deck'),
     # card paths
-    path('card/<int:pk>/add/', views.add_card, name='add_card'),
+    path('decks/<int:pk>/add/', views.add_card, name='add_card'),
+    path('decks/<int:deck_pk>/card/<int:card_pk>/edit/', views.edit_card, name='edit_card'),
+    path('decks/<int:deck_pk>/card/<int:card_pk>/delete/', views.delete_card, name='delete_card'),
 ]

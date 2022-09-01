@@ -6,6 +6,8 @@
     {% for card in cards %}
         <div class="card-box">
         <h2 class="deck-details">{{ card.prompt }}: {{ card.answer }}</h2>
+        <a class="edit-card" href="{% url 'edit_card' deck_pk=deck.pk card_pk=card.pk %}">Edit</a> 
+        <a class="delete-card" href="{% url 'delete_card' deck_pk=deck.pk card_pk=card.pk %}">Delete</a>
         </div>
     {% endfor %}
     <a class="add-card" href="{% url 'add_card' pk=deck.pk %}">Add new card</a>
