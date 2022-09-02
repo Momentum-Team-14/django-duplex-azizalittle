@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<div class="container">
     <h1 class="">Deck: {{ deck.title }}</h1>
     <!-- trying to make a for loop that displays each card in the given deck -->
     {% for card in cards %}
-        <div class="card-box">
-        <h2 class="deck-details">{{ card.prompt }}: {{ card.answer }}</h2>
-        <a class="edit-card" href="{% url 'edit_card' deck_pk=deck.pk card_pk=card.pk %}">Edit</a> 
-        <a class="delete-card" href="{% url 'delete_card' deck_pk=deck.pk card_pk=card.pk %}">Delete</a>
+        <div class="card mb-3 p-3">
+        <h4>{{ card.prompt }}</h4> 
+        <p>{{ card.answer }}</p>
+        <footer class="card-footer">
+        <a class="card-footer-item" href="{% url 'edit_card' deck_pk=deck.pk card_pk=card.pk %}">Edit</a> 
+        <a class="card-footer-item" href="{% url 'delete_card' deck_pk=deck.pk card_pk=card.pk %}">Delete</a>
+        </footer>
         </div>
     {% endfor %}
+   </div>
     <a class="add-card" href="{% url 'add_card' pk=deck.pk %}">Add new card</a>
     <a class="deck-list" href="{% url 'list_decks' %}">Back to deck list</a>
     <a class="edit-deck" href="{% url 'edit_deck' pk=deck.pk %}">Edit deck</a>
